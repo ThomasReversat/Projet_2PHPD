@@ -47,8 +47,5 @@
             esquivant l'avancement de grade qui le mettrait à la terre.</p>
     </div>
 </div>
-
-<p>test</p>
-
 </body>
 </html>
