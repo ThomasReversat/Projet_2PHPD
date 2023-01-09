@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>Internet Movies DataBase & co</title>
+    <link rel="shortcut icon" type="image/ico" href="img/icone.ico">
+    <link rel="stylesheet" href="css/style.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     /* Pour l'affichage sur les écrans de petite taille */
