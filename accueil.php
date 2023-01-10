@@ -12,7 +12,7 @@
 
 </head>
 <body>
-<div class="container text-center">
+<div class="container text-center head">
     <h1>Bienvenue sur notre site</h1>
     <p>Nous sommes heureux de vous accueillir sur notre site web.</p>
         <div class="research">
@@ -25,12 +25,10 @@
                 <option value="category2">Drama</option>
             </select>
         </div>
+        <div class="container text-center txt">
+            Voici les films disponibles actuellement sur notre site.
+        </div>
 </div> 
-
-<div class="container text-center txt">
-    Voici les films disponibles actuellement sur notre site.
-</div>
-
 
 <div class="container text-center">
   <div class="row">
