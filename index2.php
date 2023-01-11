@@ -11,13 +11,10 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!-- afficher le nombre de produit dans le panier -->
     <a href="panier.php" class="link">Panier<span><?=array_sum($_SESSION['panier'])?></span></a>
     <section class="products_list">
         <?php 
-        //inclure la page de connexion
         include_once "con_dbb.php";
-        //afficher la liste des produits
          $req = mysqli_query($con, "SELECT * FROM products");
          while($row = mysqli_fetch_assoc($req)){ 
         ?>
