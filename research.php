@@ -1,10 +1,11 @@
 <?php
-    $bdd = new PDO("mysql:host=localhost;dbname=projet_php;charset=utf8","root","");
-    $req = $bdd->query("SELECT * FROM movies");
-    if(isset($_GET["s"]) AND !empty($_GET["s"])){
-    $projet_php = htmlspecialchars($_GET["s"]);
-    $req = $bdd->query("SELECT title FROM movies WHERE title LIKE '%".$projet_php."%'");
-    }
+session_start();
+$bdd = new PDO("mysql:host=localhost;dbname=projet_php;charset=utf8","root","");
+$req = $bdd->query("SELECT * FROM movies");
+if(isset($_GET["s"]) AND !empty($_GET["s"])){
+$projet_php = htmlspecialchars($_GET["s"]);
+$req = $bdd->query("SELECT title FROM movies WHERE title LIKE '%".$projet_php."%'");
+}
 ?>
 <!DOCTYPE html>
 <html lang="fr">

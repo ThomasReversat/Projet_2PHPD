@@ -1,26 +1,30 @@
-<?php 
-   session_start() ;
-  if(isset($_POST['boutton-valider'])){ 
-    if(isset($_POST['email']) && isset($_POST['passwords'])) {
-        $email = $_POST['email'] ;
-        $mdp = $_POST['passwords'] ;
-        $erreur = "" ;
-        $nom_serveur = "localhost";
-        $utilisateur = "root";
-        $mot_de_passe ="";
-        $nom_base_données ="projet_php" ;
-        $con = mysqli_connect($nom_serveur , $utilisateur ,$mot_de_passe , $nom_base_données);
-        $req = mysqli_query($con , "SELECT * FROM users WHERE email = '$email' AND passwords ='$mdp' ") ;
-        $num_ligne = mysqli_num_rows($req) ;
-        if($num_ligne > 0){
+<?php
+session_start();
+$bdd = new PDO("mysql:host=localhost;dbname=projet_php;charset=utf8","root","");
+
+if(isset($_POST["send"])){ 
+    if(isset($_POST['username']) AND !empty($_POST["passwords"])){
+        $username = htmlspecialchars($_POST["username"]);
+        $passwords = sha1($_POST["passwords"]);
+        $find = $bdd -> prepare("SELECT * FROM users WHERE username = ? AND passwords = ?");
+        $find -> execute(array($username, $passwords));
+
+        if($find -> rowCount() > 0){
+            $_SESSION["username"] = $username;
+            $_SESSION["passwords"] = $passwords;
+            $_SESSION["id_users"] = $find->fetch()["id_users"];
             header("Location:accueil.php") ;
-            $_SESSION['email'] = $email ;
-        }else {
-            $erreur = "Adresse Mail ou Mots de passe incorrectes !";
+
+        }else{
+            echo "Votre mot de passe ou username n'est pas bon.";
         }
+
+    }else{
+        echo "Veuillez completer tous les champs.";
     }
-  }
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -35,17 +39,15 @@
 <body>
    <section>
        <h1> Connexion</h1>
-       <?php 
-       if(isset($erreur)){
-           echo "<p class= 'Erreur'>".$erreur."</p>"  ;
-       }
-       ?>
        <form action="" method="POST"> 
-           <label>Adresse Mail</label>
-           <input type="text" name="email">
+
+           <label>Username</label>
+           <input type="text" name="username">
+
            <label >Mots de Passe</label>
            <input type="password" name="passwords">
-           <input type="submit" value="Valider" name="boutton-valider">
+
+           <input type="submit" name="send">
        </form>
    </section> 
 </body>
