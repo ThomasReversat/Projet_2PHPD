@@ -11,7 +11,7 @@ $req = $bdd->query("SELECT title FROM movies WHERE title LIKE '%".$projet_php."%
 <html lang="fr">
 <head>
     <title>Internet Movies DataBase & co</title>
-    <link rel="shortcut icon" type="image/ico" href="img/icone.ico">
+    <link rel="shortcut icon" type="image/ico" href="all_images/icone.ico">
     <link rel="stylesheet" href="css/register.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">

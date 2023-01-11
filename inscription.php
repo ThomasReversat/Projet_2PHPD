@@ -1,4 +1,5 @@
 <?php
+include 'includes/header.php';
 session_start();
 $bdd = new PDO("mysql:host=localhost;dbname=projet_php;charset=utf8","root","");
 if (isset($_POST["send"])) {
@@ -11,7 +12,6 @@ if (isset($_POST["send"])) {
         $passwords = sha1($_POST["passwords"]);
         $insertUser = $bdd->prepare("INSERT INTO users(name,first_name,email,age,username,passwords)VALUES(?,?,?,?,?,?)");
         $insertUser->execute(array($name, $first_name, $email, $age, $username, $passwords));
-
         $find = $bdd->prepare("SELECT * FROM users WHERE username = ? AND passwords = ?");
         $find->execute(array($username, $passwords));
         if($find->rowCount() > 0){
@@ -25,17 +25,7 @@ if (isset($_POST["send"])) {
     }
 }
 ?>
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <title>Internet Movies DataBase & co</title>
-    <link rel="shortcut icon" type="image/ico" href="img/icone.ico">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bienvenue</title>
-    <link rel="stylesheet" href="css/connexion.css">
-</head>
+
 <body>
     <form method="POST" action="">
         <label>Name</label>

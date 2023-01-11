@@ -1,24 +1,17 @@
 <?php 
-   session_start();
-   include_once "con_dbb.php";
+include 'includes/header.php';
+session_start();
+include_once "con_dbb.php";
 
-   //supprimer les produits
-   //si la variable del existe
-   if(isset($_GET['del'])){
+//supprimer les produits
+//si la variable del existe
+if(isset($_GET['del'])){
     $id_del = $_GET['del'] ;
     //suppression
     unset($_SESSION['panier'][$id_del]);
-   }
+}
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panier</title>
-    <link rel="stylesheet" href="style.css">
-</head>
+
 <body class="panier">
     <a href="index.php" class="link">Boutique</a>
     <section>
@@ -49,11 +42,11 @@
                     $total = $total + $product['price'] * $_SESSION['panier'][$product['id']] ;
                 ?>
                 <tr>
-                    <td><img src="project_images/<?=$product['img']?>"></td>
+                    <td><img src="all_images/<?=$product['img']?>"></td>
                     <td><?=$product['name']?></td>
                     <td><?=$product['price']?>€</td>
                     <td><?=$_SESSION['panier'][$product['id']] // Quantité?></td>
-                    <td><a href="panier.php?del=<?=$product['id']?>"><img src="delete.png"></a></td>
+                    <td><a href="panier.php?del=<?=$product['id']?>"><img src="all_images/delete.png"></a></td>
                 </tr>
 
             <?php endforeach ;} ?>

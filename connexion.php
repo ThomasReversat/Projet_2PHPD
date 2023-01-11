@@ -1,4 +1,5 @@
 <?php
+include 'includes/header.php';
 session_start();
 $bdd = new PDO("mysql:host=localhost;dbname=projet_php;charset=utf8","root","");
 
@@ -25,17 +26,6 @@ if(isset($_POST["send"])){
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <title>Internet Movies DataBase & co</title>
-    <link rel="shortcut icon" type="image/ico" href="img/icone.ico">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulaire de connexion</title>
-    <link rel="stylesheet" href="css/connexion.css">
-</head>
 <body>
    <section>
        <h1> Connexion</h1>
@@ -51,4 +41,4 @@ if(isset($_POST["send"])){
        </form>
    </section> 
 </body>
-</html>
+<?php include 'includes/footer.php'; ?>
