@@ -1,7 +1,11 @@
 <?php
-
+    $bdd = new PDO("mysql:host=localhost;dbname=projet_php;charset=utf8","root","");
+    $req = $bdd->query("SELECT * FROM movies");
+    if(isset($_GET["s"]) AND !empty($_GET["s"])){
+    $projet_php = htmlspecialchars($_GET["s"]);
+    $req = $bdd->query("SELECT title FROM movies WHERE title LIKE '%".$projet_php."%'");
+    }
 ?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -16,6 +20,23 @@
         <input type="search" name="s" placeholder="Rechercher une information"/>
         <input type="submit" name="envoyer"/>
     </form>
+    <section class="display_movies">
+        <?php
+            if($req->rowCount() > 0){
+                while($movies = $req->fetch()){
+                    ?>
+                        <p><?= $movies["title"]; ?></p>
+                    <?php
+                }
+            }
+            else{
+                ?>
+                <p>Aucun utilisateur</p>
+                <?php
+            }
+        ?>
+    </section>
+    
 </body>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>

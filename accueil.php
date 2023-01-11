@@ -1,7 +1,6 @@
 <?php
    session_start() ;
 ?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -15,6 +14,21 @@
 
 </head>
 <body>
+<?php
+        $bdd = new PDO("mysql:host=localhost;dbname=projet_php;charset=utf8","root","");
+        $req = $bdd->query("SELECT images FROM movies");
+        while($donnees = $req->fetch()){
+        echo ("<img style='width:500px; height:500px;' src = '" . $donnees['images']. "'/><br/>");
+        }
+    ?>
+<?php
+    $bdd = new PDO("mysql:host=localhost;dbname=projet_php;charset=utf8","root","");
+    $req = $bdd->query("SELECT * FROM movies");
+    if(isset($_GET["s"]) AND !empty($_GET["s"])){
+    $projet_php = htmlspecialchars($_GET["s"]);
+    $req = $bdd->query("SELECT title FROM movies WHERE title LIKE '%".$projet_php."%'");
+    }
+?>
 <div class="container text-center head">
         <h1>Bienvenue sur notre site</h1>
         <p>Nous sommes heureux de vous accueillir sur notre site web.</p>
@@ -27,12 +41,34 @@
                 <option value="category1">Action</option>
                 <option value="category2">Drama</option>
             </select>
-            <input type="button" onclick="window.location.href = 'index.php';" value="Connexion" />
+            
+            <input type="button" onclick="window.location.href = 'connexion.php';" value="Connexion" />
         </div>
         <div class="container text-center txt">
             Voici les films disponibles actuellement sur notre site.
         </div>
 </div> 
+
+<form method="get">
+        <input type="search" name="s" placeholder="Rechercher une information"/>
+        <input type="submit" name="envoyer"/>
+    </form>
+    <section class="display_movies">
+        <?php
+            if($req->rowCount() > 0){
+                while($movies = $req->fetch()){
+                    ?>
+                        <p><?= $movies["title"]; ?></p>
+                    <?php
+                }
+            }
+            else{
+                ?>
+                <p>Aucun utilisateur</p>
+                <?php
+            }
+        ?>
+    </section>
 
 <div class="container text-center">
   <div class="row">
