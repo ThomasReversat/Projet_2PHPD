@@ -13,7 +13,7 @@
         $req = mysqli_query($con , "SELECT * FROM users WHERE email = '$email' AND mdp ='$mdp' ") ;
         $num_ligne = mysqli_num_rows($req) ;
         if($num_ligne > 0){
-            header("Location:bienvenu.php") ;
+            header("Location:accueil.php") ;
             $_SESSION['email'] = $email ;
         }else {
             $erreur = "Adresse Mail ou Mots de passe incorrectes !";
@@ -22,8 +22,10 @@
   }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
+    <title>Internet Movies DataBase & co</title>
+    <link rel="shortcut icon" type="image/ico" href="img/icone.ico">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

@@ -1,3 +1,7 @@
+<?php
+   session_start() ;
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -12,8 +16,8 @@
 </head>
 <body>
 <div class="container text-center head">
-    <h1>Bienvenue sur notre site</h1>
-    <p>Nous sommes heureux de vous accueillir sur notre site web.</p>
+        <h1>Bienvenue sur notre site</h1>
+        <p>Nous sommes heureux de vous accueillir sur notre site web.</p>
         <div class="research">
             <form class="research-txt">
                 <input type="text" placeholder="Search...">
@@ -23,6 +27,7 @@
                 <option value="category1">Action</option>
                 <option value="category2">Drama</option>
             </select>
+            <input type="button" onclick="window.location.href = 'index.php';" value="Connexion" />
         </div>
         <div class="container text-center txt">
             Voici les films disponibles actuellement sur notre site.

@@ -10,7 +10,7 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background-color: #17f;
+    background-color: #f5ebe0;
 }
 section {
     background-color: #fff;
@@ -36,7 +36,7 @@ form  input {
 
 }
 form  input[type='submit'] {
-    background-color: #17f;
+    background-color: #d5bdaf;
     border: 0;
     color: #fff;
     margin-top: 15px;
@@ -44,7 +44,7 @@ form  input[type='submit'] {
 
 }
 .Erreur {
-    color: red;
+    color: rgb(236, 46, 46);
     margin: 10px 0;
     text-align: center;
 }
