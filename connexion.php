@@ -1,4 +1,6 @@
 <?php
+include 'includes/header.php';
+
 session_start();
 $bdd = new PDO("mysql:host=localhost;dbname=projet_php;charset=utf8","root","");
 

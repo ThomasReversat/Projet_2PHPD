@@ -1,6 +1,8 @@
 <?php 
 session_start() ;
 include_once "con_dbb.php";
+include 'includes/header.php';
+
 if(!$_SESSION["username"]){
     if(!$_SESSION["passwords"]){
         header("Location: connexion.php");
@@ -24,29 +26,30 @@ if(!$_SESSION["username"]){
     <!-- afficher le nombre de produit dans le panier -->
     <section class="products_list">
 
-    <a href="accueil.php" class="link">Accueil<span></span></a>
-    <a href="panier.php" class="link">Panier<span></span></a>
-
+    <a href="accueil.php" class="link">Accueil</a>
+    <a href="panier.php" class="link">Panier</a>
         <?php 
-
         //inclure la page de connexion
         //afficher la liste des produits
-         $req = mysqli_query($con, "SELECT * FROM products");
-         while($row = mysqli_fetch_assoc($req)){ 
+
+        $bdd = new PDO("mysql:host=localhost;dbname=projet_php;charset=utf8","root","");
+        $req = $bdd->query("SELECT * FROM products");
+        while ($donnees = $req->fetch()) {
         ?>
         <form action="" class="product">
             <div class="image_product">
-                <img src="all_images/<?=$row['img']?>">
+                <img src="<?=$donnees['img']?>">
             </div>
             <div class="content">
-                <h4 class="name"><?=$row['name']?></h4>
-                <h2 class="price"><?=$row['price']?>€</h2>
-                <a href="ajouter_panier.php?id=<?=$row['id']?>" class="id_product">Ajouter au panier</a>
+                <h4 class="name"><?=$donnees['name']?></h4>
+                <h2 class="price"><?=$donnees['price']?>€</h2>
+                <a href="ajouter_panier.php?id=<?=$donnees['id']?>" class="id_product">Ajouter au panier</a>
             </div>
         </form>
 
         <?php } ?>
-       
     </section>
 </body>
 </html>
+
+

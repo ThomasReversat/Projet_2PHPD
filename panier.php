@@ -1,10 +1,9 @@
 <?php 
 session_start();
 include_once "con_dbb.php";
+include 'includes/header.php';
+
 echo $_SESSION["username"];
-
-
-
 //supprimer les produits
 //si la variable del existe
 if(isset($_GET['del'])){
@@ -26,48 +25,48 @@ if(isset($_GET['del'])){
     <script src="js/cat.js"></script>
 </head>
 <body class="panier">
-    <a href="shop.php" class="link">Boutique</a>
-    <section>
-        <table>
-            <tr>
-                <th></th>
-                <th>Nom</th>
-                <th>Prix</th>
-                <th>Quantité</th>
-                <th>Action</th>
-            </tr>
-            <?php 
-              $total = 0 ;
-              // liste des produits
-              //récupérer les clés du tableau session
-              $ids = array_keys($_SESSION['panier']);
-              //s'il n'y a aucune clé dans le tableau
-              if(empty($ids)){
-                echo "Votre panier est vide";
-              }else {
-                //si oui 
-                $products = mysqli_query($con, "SELECT * FROM products WHERE id IN (".implode(',', $ids).")");
+<a href="shop.php" class="link">Boutique</a>
+<section>
+    <table>
+        <tr>
+            <th></th>
+            <th>Nom</th>
+            <th>Prix</th>
+            <th>Quantité</th>
+            <th>Action</th>
+        </tr>
+        <?php 
+            $total = 0 ;
+            // liste des produits
+            //récupérer les clés du tableau session
+            //s'il n'y a aucune clé dans le tableau
+            $ids = array_keys($_SESSION['panier']);
+            //s'il n'y a aucune clé dans le tableau
+            if(empty($ids)){
+              echo "Votre panier est vide";
+            }else {
+              //si oui 
+              
+              $products = mysqli_query($con, "SELECT * FROM products WHERE id IN (".implode(',', $ids).")");
 
-                //lise des produit avec une boucle foreach
-                foreach($products as $product):
-                    //calculer le total ( prix unitaire * quantité) 
-                    //et aditionner chaque résutats a chaque tour de boucle
-                    $total = $total + $product['price'] * $_SESSION['panier'][$product['id']] ;
-                ?>
-                <tr>
-                    <td><img src="all_images/<?=$product['img']?>"></td>
-                    <td><?=$product['name']?></td>
-                    <td><?=$product['price']?>€</td>
-                    <td><?=$_SESSION['panier'][$product['id']] // Quantité?></td>
-                    <td><a href="panier.php?del=<?=$product['id']?>"><img src="all_images/delete.png"></a></td>
-                </tr>
+              //lise des produit avec une boucle foreach
+              foreach($products as $product):
+                  //calculer le total ( prix unitaire * quantité) 
+                  //et aditionner chaque résutats a chaque tour de boucle
+                  $total = $total + $product['price'] * $_SESSION['panier'][$product['id']] ;
+              ?>
+              <tr>
+                  <td><img src="<?=$product['img']?>"></td>
+                  <td><?=$product['name']?></td>
+                  <td><?=$product['price']?>€</td>
+                  <td><?=$_SESSION['panier'][$product['id']] // Quantité?></td>
+                  <td><a href="panier.php?del=<?=$product['id']?>"><img src="all_images/delete.png"></a></td>
+              </tr>
 
-            <?php endforeach ;} ?>
+          <?php endforeach ;} ?>
 
-            <tr class="total">
-                <th>Total : <?=$total?>€</th>
-            </tr>
-        </table>
-    </section>
+        </tr>
+    </table>
+</section>
 </body>
 </html>

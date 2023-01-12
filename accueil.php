@@ -1,19 +1,18 @@
 <?php
-include 'include/header.php';
+include 'includes/header.php';
+
 session_start() ;
-
+// include 'includes/header.php';
 //echo $_SESSION["username"];
-
 ?>
+<style>
+<?php include 'css/accueil.css'; ?>
+</style>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <title>Internet Movies DataBase & co</title>
     <link rel="shortcut icon" type="image/ico" href="all_images/icone.ico">
-    <link rel="stylesheet" href="css/accueil.css">
-    <link rel="stylesheet" href="css/style.css">
-
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -55,8 +54,10 @@ session_start() ;
                 <option value="category2">Drama</option>
             </select>
 
-            <a href="connexion.php" class="link">connexion<span></span></a>
-            <a href="shop.php" class="link">shop<span></span></a>
+            <a href="connexion.php" class="link">Connexion<span></span></a>
+            <a href="shop.php" class="link">Shop<span></span></a>
+            <a href="shop.php" class="link">Boutique<span></span></a>
+
 
 
         </div>
@@ -66,43 +67,30 @@ session_start() ;
 </div> 
 
 
-<?php
-    $bdd = new PDO("mysql:host=localhost;dbname=projet_php;charset=utf8","root","");
 
-    $req = $bdd->query("SELECT images FROM movies");
-    while($donnees = $req->fetch()){
-        echo ("<img style='width:500px; height:500px;' src = '" . $donnees['images']. "'/><br/>");
-    }
-?>
-<div class="container text-center">
-  <div class="row">
-    <div class="col col-margin">
-        <img src="all_images/topgun.jpg" class="img-fluid" alt="Movie Poster">
-        <h3>Top Gun: Maverick</h3>
-        <p class="description">Après plus de 30 ans de service en tant que l'un des meilleurs aviateurs de la Marine,
-            Pete Maverick Mitchell est à sa place, repoussant les limites en tant que pilote d'essai courageux et
-            esquivant l'avancement de grade qui le mettrait à la terre.
-        </p>
-    </div>
-    <div class="col col-margin">
-        <img src="all_images/titanic.jpg" class="img-fluid" alt="Image 1">
-        <h3>Titanic</h3>
-        <p class="description">En 1997, l'épave du Titanic est l'objet d'une exploration fiévreuse, menée par des chercheurs de trésor
-            en quête d'un diamant bleu qui se trouvait à bord. Frappée par un reportage télévisé, l'une des rescapées
-            du naufrage, âgée de 102 ans, Rose DeWitt, se rend sur place et évoque ses souvenirs. 1912.
-        </p>
-    </div>
-    <div class="col col-margin">
-        <img src="all_images/avatar.jpg" class="img-fluid" alt="Movie Poster">
-        <h3>Avatar: La voie de l'eau</h3>
-        <p class="description">Jake Sully et Ney'tiri ont formé une famille et font tout pour rester aussi soudés que possible.
-            Ils sont cependant contraints de quitter leur foyer et d'explorer les différentes régions encore mystérieuses
-            de Pandora. Lorsqu'une ancienne menace refait surface, Jake va devoir mener une guerre difficile contre les
-            humains.
-        </p>
-    </div>
-  </div>
-</div>
+
+    <?php
+    $bdd = new PDO("mysql:host=localhost;dbname=projet_php;charset=utf8","root","");
+    $req = $bdd->query("SELECT * FROM products");
+        while ($donnees = $req->fetch()) {
+            ?>
+            <div class="container text-center">
+                <div class="row">
+                    <!-- <form class=""> -->
+                        <div class="col">
+                            <img class="" src = "<?=$donnees['img']?>"/><br/>         
+                            <p class=""><?=$donnees['name']?></p>
+                            <p class=""><?=$donnees['descriptions']?></p>
+                            <iframe class="" width="560" height="315" src="<?=$donnees['trailer']?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+                        </iframe>
+                        </div>
+                    <!-- </form> -->
+                </div>
+            </div>
+
+            <?php } ?>
+
+
 </body>
 
 <?php include 'includes/footer.php'; ?>
