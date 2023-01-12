@@ -28,9 +28,9 @@
             <div class="col">
                 <!-- Image -->
                 <img class="box" src= "<?=$donnees['img']?>"/><br/>         
-                <p class=""><?=$donnees['name']?></p>
-                <p class=""><?=$donnees['descriptions']?></p>
-                <iframe class="box" width="560" height="315" src="<?=$donnees['trailer']?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <h2><?=$donnees['name']?></h2>
+                <p><?=$donnees['descriptions']?></p>
+                <iframe class="box-iframe"src="<?=$donnees['trailer']?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
         </div>
     </div>
