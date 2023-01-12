@@ -8,6 +8,9 @@
         }
     }
 ?>
+
+<style><?php include 'css/style.css'; ?></style>
+
 <body>
     <section class="products_list">
     <a href="accueil.php" class="link">Accueil</a>

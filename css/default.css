@@ -1,12 +1,40 @@
+/* Parametre Global */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    text-decoration: none;
+}
+
+section {
+    background-color: #fff;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    border-radius: 6px;
+}
+section h1 {
+    text-align: center;
+}
+a {
+    text-decoration: none;
+    color: black;
+}
+
 /* Boutton */
 .link {
-    margin: 20px;
+    margin: 10px;
     width: fit-content;
     position: relative;
-    text-decoration: 0;
-    background-color: #37a6ff;
+    display: flex;
+    justify-content: space-around;
+    display: inline-block;
+    background-color: #d5bdaf;
     color: #fff;
-    padding: 10px 25px;
+    padding: 15px 15px;
     border-radius: 6px;
     font-size: 14px;
 }

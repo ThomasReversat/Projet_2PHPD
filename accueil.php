@@ -3,17 +3,21 @@
     session_start() ;
 ?>
 <!-- Import de style -->
-<style><?php include 'css/accueil.css'; ?></style>
+<style>
+    <?php include 'css/accueil.css'; ?>
+    <?php include 'css/default.css'; ?>
+</style>
+
 <body>
     <!-- Principale information -->
-    <div class="container text-center head">
+    <div class="container text-center">
         <h1>Bienvenue sur notre site</h1>
         <p>Nous sommes heureux de vous accueillir sur notre site web.</p>
-        <form method="get">
+        <form class="" method="get">
             <input type="search" name="s" placeholder="Rechercher une information"/>
             <input type="submit" name="envoyer"/>
         </form>
-        <section class="display_movies">
+        <section class="container text-center" class="research">
             <?php
                 $bdd = new PDO("mysql:host=localhost;dbname=projet_php;charset=utf8","root","");
 
@@ -33,33 +37,18 @@
                     <?php
                 }
             ?>
-            </section>
-            <select class="research-cat">
-                <option value="category1">Action</option>
-                <option value="category2">Drama</option>
-            </select>
+        </section>
+        <select class="">
+            <option value="category1">Action</option>
+            <option value="category2">Drama</option>
+        </select>
+        <div class="">
             <a href="connexion.php" class="link">Connexion<span></span></a>
-            <a href="shop.php" class="link">Shop<span></span></a>
             <a href="shop.php" class="link">Boutique<span></span></a>
+            <a href="films.php" class="link">Films<span></span></a>
         </div>
     </div> 
-    <?php
-        $bdd = new PDO("mysql:host=localhost;dbname=projet_php;charset=utf8","root","");
-        $req = $bdd->query("SELECT * FROM products");
-        while ($donnees = $req->fetch()) {
-    ?>
-    <div class="container text-center">
-        <div class="row">
-            <!-- <form class=""> -->
-            <div class="col">
-                <img class="" src = "<?=$donnees['img']?>"/><br/>         
-                <p class=""><?=$donnees['name']?></p>
-                <p class=""><?=$donnees['descriptions']?></p>
-                <iframe class="" width="560" height="315" src="<?=$donnees['trailer']?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-            </div>
-            <!-- </form> -->
-        </div>
-    </div>
-        <?php } ?>
+
+
 </body>
 <?php include 'includes/footer.php'; ?>

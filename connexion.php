@@ -15,13 +15,19 @@
                 $_SESSION["id_users"] = $find->fetch()["id_users"];
                 header("Location:accueil.php") ;
             }else{
-                echo "Votre mot de passe ou username n'est pas bon.";
+                echo "<p>Votre mot de passe ou username n'est pas bon.</p>";
             }
         }else{
-            echo "Veuillez completer tous les champs.";
+            echo "<p>Veuillez completer tous les champs.</p>";
         }
     }
 ?>
+
+<style>
+    <?php include 'css/connexion.css'; ?>
+    <?php include 'css/default.css'; ?>
+</style>
+
 <body>
    <section>
        <h1>Connexion</h1>
@@ -41,8 +47,8 @@
            <!-- Crée un compte -->
            <p>Première visite sur notre site ?</p>
            <?php
-                echo '<a href="http://localhost/Projet_2PHPD/inscription.php">Incription</a>';
-                echo '<a href="http://localhost/Projet_2PHPD/accueil.php">Retour</a>';
+                echo '<a class="link" href="http://localhost/Projet_2PHPD/inscription.php">Incription</a>';
+                echo '<a class="link" href="http://localhost/Projet_2PHPD/accueil.php">Retour</a>';
             ?>
        </form>
    </section> 

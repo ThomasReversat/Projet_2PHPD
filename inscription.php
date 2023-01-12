@@ -27,22 +27,33 @@
     }
 ?>
 
+<style><?php include 'css/connexion.css'; ?></style>
+
 <body>
     <form method="POST" action="">
+        <!-- Nom -->
         <label>Name</label>
         <input type="text" name="name">
+        <!-- Prenom -->
         <label>First Name</label>
         <input type="text" name="first_name">
+        <!-- E-mail -->
         <label>E-mail</label>
         <input type="text" name="email">
+        <!-- Age -->
         <label>Age</label>
         <input type="text" name="age">
+        <!-- Surnom -->
         <label>Username *</label>
         <input type="text" name="username">
+        <!-- Mot de passe -->
         <label>Password *</label>
         <input type="password" name="passwords">
+        <!-- Boutton -->
         <input type="submit" name="send">
         <p>* Obligatoire</p>
+        <?php echo '<a href="http://localhost/Projet_2PHPD/connexion.php">Retour</a>';?>
+
     </form>
 </body>
 </html>

@@ -10,6 +10,9 @@
         unset($_SESSION['panier'][$id_del]);
     }
 ?>
+
+<style><?php include 'css/style.css'; ?></style>
+
 <body class="panier">
     <a href="shop.php" class="link">Boutique</a>
     <section>
