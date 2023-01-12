@@ -1,66 +1,79 @@
 <?php
-include 'includes/header.php';
+include 'include/header.php';
 session_start() ;
-//echo $_SESSION["username"];
-?>
 
-<body>
-<?php
-        $bdd = new PDO("mysql:host=localhost;dbname=projet_php;charset=utf8","root","");
-        $req = $bdd->query("SELECT images FROM movies");
-        while($donnees = $req->fetch()){
-        echo ("<img style='width:500px; height:500px;' src = '" . $donnees['images']. "'/><br/>");
-        }
-    ?>
-<?php
-    $bdd = new PDO("mysql:host=localhost;dbname=projet_php;charset=utf8","root","");
-    $req = $bdd->query("SELECT * FROM movies");
-    if(isset($_GET["s"]) AND !empty($_GET["s"])){
-    $projet_php = htmlspecialchars($_GET["s"]);
-    $req = $bdd->query("SELECT title FROM movies WHERE title LIKE '%".$projet_php."%'");
-    }
+//echo $_SESSION["username"];
+
 ?>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <title>Internet Movies DataBase & co</title>
+    <link rel="shortcut icon" type="image/ico" href="all_images/icone.ico">
+    <link rel="stylesheet" href="css/accueil.css">
+    <link rel="stylesheet" href="css/style.css">
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="js/cat.js"></script>
+</head>
+<body>
 <div class="container text-center head">
         <h1>Bienvenue sur notre site</h1>
         <p>Nous sommes heureux de vous accueillir sur notre site web.</p>
-        <div class="research">
-            <form class="research-txt">
-                <input type="text" placeholder="Search...">
-                <button type="submit">Rechercher</button>
-            </form>
+        <form method="get">
+        <input type="search" name="s" placeholder="Rechercher une information"/>
+        <input type="submit" name="envoyer"/>
+        </form>
+        <section class="display_movies">
+            <?php
+                $bdd = new PDO("mysql:host=localhost;dbname=projet_php;charset=utf8","root","");
+
+            $req = $bdd->query("SELECT * FROM movies");
+            if(isset($_GET["s"]) AND !empty($_GET["s"])){
+            $projet_php = htmlspecialchars($_GET["s"]);
+            $req = $bdd->query("SELECT title FROM movies WHERE title LIKE '%".$projet_php."%'");
+            }
+                if($req->rowCount() > 0){
+                    while($movies = $req->fetch()){
+                        ?>
+                            <p><?= $movies["title"]; ?></p>
+                        <?php
+                    }
+                }
+                else{
+                    ?>
+                    <p>Aucun utilisateur</p>
+                    <?php
+                }
+            ?>
+        </section>
             <select class="research-cat">
                 <option value="category1">Action</option>
                 <option value="category2">Drama</option>
             </select>
-            
-            <input type="button" onclick="window.location.href = 'connexion.php';" value="Connexion" />
+
+            <a href="connexion.php" class="link">connexion<span></span></a>
+            <a href="shop.php" class="link">shop<span></span></a>
+
+
         </div>
         <div class="container text-center txt">
             Voici les films disponibles actuellement sur notre site.
         </div>
 </div> 
 
-<form method="get">
-        <input type="search" name="s" placeholder="Rechercher une information"/>
-        <input type="submit" name="envoyer"/>
-    </form>
-    <section class="display_movies">
-        <?php
-            if($req->rowCount() > 0){
-                while($movies = $req->fetch()){
-                    ?>
-                        <p><?= $movies["title"]; ?></p>
-                    <?php
-                }
-            }
-            else{
-                ?>
-                <p>Aucun utilisateur</p>
-                <?php
-            }
-        ?>
-    </section>
 
+<?php
+    $bdd = new PDO("mysql:host=localhost;dbname=projet_php;charset=utf8","root","");
+
+    $req = $bdd->query("SELECT images FROM movies");
+    while($donnees = $req->fetch()){
+        echo ("<img style='width:500px; height:500px;' src = '" . $donnees['images']. "'/><br/>");
+    }
+?>
 <div class="container text-center">
   <div class="row">
     <div class="col col-margin">
@@ -93,4 +106,3 @@ session_start() ;
 </body>
 
 <?php include 'includes/footer.php'; ?>
-

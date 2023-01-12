@@ -1,4 +1,7 @@
 <?php
+// if (!$_SESSION["passwords"]) {
+//     header("Location: connexion.php");
+// }
 //inclure la page de connexion
  include_once "con_dbb.php";
  //verifier si une session existe
@@ -28,10 +31,7 @@
         //si non on ajoute le produit
         $_SESSION['panier'][$id]= 1 ;
     }
-
-   //redirection vers la page index.php
-   header("Location:index.php");
-
-
+   //redirection vers la page shop.php
+   header("Location:shop.php");
   }
 ?>
