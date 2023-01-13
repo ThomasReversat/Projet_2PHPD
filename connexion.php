@@ -8,7 +8,6 @@
             $passwords = sha1($_POST["passwords"]);
             $find = $bdd -> prepare("SELECT * FROM users WHERE username = ? AND passwords = ?");
             $find -> execute(array($username, $passwords));
-
             if($find -> rowCount() > 0){
                 $_SESSION["username"] = $username;
                 $_SESSION["passwords"] = $passwords;
@@ -16,36 +15,26 @@
                 $_SESSION["connecter"] = true;
                 header("Location:accueil.php") ;
             }else{
-                echo "<p>Votre mot de passe ou username n'est pas bon.</p>";
+                echo "<p class='text'>Votre mot de passe ou username n'est pas bon.</p>";
             }
         }else{
-            echo "<p>Veuillez completer tous les champs.</p>";
+            echo "<p class='text'>Veuillez completer tous les champs.</p>";
         }
     }
 ?>
-
 <style>
     <?php include 'css/connexion.css'; ?>
     <?php include 'css/default.css'; ?>
 </style>
-
 <body>
    <section>
        <h1>Connexion</h1>
        <form action="" method="POST">
-
-            <!-- Username -->
            <label>Username</label>
            <input type="text" name="username">
-
-            <!-- Mot de passe -->
            <label >Mots de Passe</label>
            <input type="password" name="passwords">
-
-            <!-- Boutton -->
            <input type="submit" name="send">
-
-           <!-- Crée un compte -->
            <p>Première visite sur notre site ?</p>
            <?php
                 echo '<a class="link" href="http://localhost/Projet_2PHPD/inscription.php">Incription</a>';

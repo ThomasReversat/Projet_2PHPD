@@ -1,6 +1,4 @@
 <?php
-
-
 function ajouter_panier($id,$id_users)
 {
     $bdd = new PDO("mysql:host=localhost;dbname=projet_php;charset=utf8","root","");
@@ -10,5 +8,4 @@ function ajouter_panier($id,$id_users)
         $requete->execute(array($id, $id_users));
     }
 }
-
 ?>

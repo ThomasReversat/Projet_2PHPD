@@ -1,16 +1,8 @@
-/*Police d'écriture*/
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500&display=swap');
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
-}
 body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background-color: #d5bdaf;
+    background-size: auto;    
 }
 .link {
     margin: 20px;
@@ -74,28 +66,30 @@ span {
     margin-bottom: 30px;
     height: fit-content;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 .price {
     margin: 15px 0;
     font-weight: 400;
-    color: #37a6ff;
+    color: #22223b;
 }
 .id_product {
     text-align: center;
     text-decoration: 0;
-    background-color: #d5bdaf;
+    background-color: #9a8c98;
     letter-spacing: 1px;
     color: #fff;
-    padding: 10px  10%;
     border-radius: 6px;
+    padding: 6px;
+    margin: 10px;
 }
-/*Panier CSS*/
 .panier {
     display: flex;
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-
 }
 .panier img {
     width: 40px;
@@ -103,7 +97,7 @@ span {
 }
 .panier section {
     width: 70%;
-    background-color: #fff;
+    background-color: #f2e9e4;
     padding: 10px;
     border-radius: 6px;
 }
@@ -120,16 +114,43 @@ th {
 td {
     border-top: 0.5px solid #999;
     text-align: center;
-    color: #d5bdaf;
+    color: black;
 }
 tr {
     border-bottom: 0.5px solid #999;
 }
-
 .total th {
     border: 0;
     float: left;
     font-weight: 500;
-    color: #d5bdaf;
+    color: black;
     padding: 10px;
+}
+.head{
+    display: flex;
+    justify-content: center;
+}
+.bouton{
+    color: #fff;
+    background-color: #d5bdaf;
+    display: flex;
+    justify-content: center;
+    width: 7vw;
+    margin: 10px;
+    padding: 15px 15px;
+    border-radius: 6px;
+}
+a.bouton {
+    text-decoration: none;
+    color: white;
+}
+.linke{
+    background-color: #f2e9e4;
+    color: black;
+    padding: 15px; 
+    border-radius: 6px;
+    margin: 20px;
+}
+.box{
+    display: flex;
 }

@@ -4,13 +4,16 @@
     session_start() ;
     
 ?>
-
-<style><?php include 'css/style.css'; ?></style>
-
+<style>
+    <?php include 'css/style.css'; ?>
+    <?php include 'css/default.css'; ?>
+</style>
 <body>
+    <div class="head">
+        <a href="accueil.php" class="bouton">Accueil</a>
+        <a href="panier.php" class="bouton">Panier</a>
+    </div>
     <section class="products_list">
-    <a href="accueil.php" class="link">Accueil</a>
-    <a href="panier.php" class="link">Panier</a>
     <?php 
         $bdd = new PDO("mysql:host=localhost;dbname=projet_php;charset=utf8","root","");
         $req = $bdd->query("SELECT * FROM products");

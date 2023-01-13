@@ -6,6 +6,4 @@ if(isset($_SESSION['connecter'])==true)
      session_destroy();
     header("Location:accueil.php");
 }
-
-
 ?>

@@ -4,7 +4,6 @@
     $bdd = new PDO("mysql:host=localhost;dbname=projet_php;charset=utf8","root","");
     if (isset($_POST["send"])) {
         if (!empty($_POST["username"]) and !empty($_POST["passwords"])) {
-            // Informations
             $name = htmlspecialchars($_POST["name"]);
             $first_name = htmlspecialchars($_POST["first_name"]);
             $email = htmlspecialchars($_POST["email"]);
@@ -26,34 +25,27 @@
         }
     }
 ?>
-
-<style><?php include 'css/connexion.css'; ?></style>
-
+<style>
+    <?php include 'css/connexion.css'; ?>
+    <?php include 'css/default.css'; ?>
+</style>
 <body>
     <form method="POST" action="">
-        <!-- Nom -->
-        <label>Name</label>
+        <label class="color">Name</label>
         <input type="text" name="name">
-        <!-- Prenom -->
-        <label>First Name</label>
+        <label class="color">First Name</label>
         <input type="text" name="first_name">
-        <!-- E-mail -->
-        <label>E-mail</label>
+        <label class="color">E-mail</label>
         <input type="text" name="email">
-        <!-- Age -->
-        <label>Age</label>
+        <label class="color">Age</label>
         <input type="text" name="age">
-        <!-- Surnom -->
-        <label>Username *</label>
+        <label class="color">Username *</label>
         <input type="text" name="username">
-        <!-- Mot de passe -->
-        <label>Password *</label>
+        <label class="color">Password *</label>
         <input type="password" name="passwords">
-        <!-- Boutton -->
         <input type="submit" name="send">
-        <p>* Obligatoire</p>
-        <?php echo '<a href="http://localhost/Projet_2PHPD/connexion.php">Retour</a>';?>
-
+        <p class="color">* Obligatoire</p>
+        <?php echo '<a class="color" href="http://localhost/Projet_2PHPD/connexion.php">Retour</a>';?>
     </form>
 </body>
 </html>

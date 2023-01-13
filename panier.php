@@ -25,66 +25,55 @@
     );
     }
 ?>
-
-<style><?php include 'css/style.css'; ?></style>
-
+<style>
+    <?php include 'css/style.css'; ?>
+    <?php include 'css/default.css'; ?>
+</style>
 <body class="panier">
-    <a href="shop.php" class="link">Boutique</a>
+    <div class="box">
+        <a href="accueil.php" class="linke">Accueil</a>
+        <a href="shop.php" class="linke">Boutique</a>
+    </div>
     <?php if(isset($_SESSION["cart"])) 
-      $id=json_encode($_SESSION["cart"])?>
-      <?php if(isset($id)):?>
-    <a href="sauvegarde.php?id=<?=urlencode($id)?>" class="link">Sauvegarder le panier</a>
-    <?php endif;?>
-
-    <section>
-        <table>
-            <tr>
-                <th></th>
-                <th>Nom</th>
-                <th>Prix</th>
-                <th>Quantité</th>
-                <th>Action</th>
-            </tr>
+        $id=json_encode($_SESSION["cart"])?>
+        <?php if(isset($id)):?>
+            <a href="sauvegarde.php?id=<?=urlencode($id)?>" class="link">Sauvegarder le panier</a>
+        <?php endif;?>
+        <section>
+            <table>
+                <tr>
+                    <th></th>
+                    <th>Nom</th>
+                    <th>Prix</th>
+                    <th>Quantité</th>
+                    <th>Action</th>
+                </tr>
             <?php
                 echo $_SESSION["username"];
                 $total = 0 ;
                 if(isset($_SESSION["panier"]) && isset($result))
-                   $ids = array_keys(($_SESSION['panier']));
-                   $mes_res = $result; 
-
-
-                    if(empty($ids)){
-                        if (empty($mes_res)) {
-                            $cache = "cache";
-                            echo "<h3 class='<?=$cache?>'>Votre panier est vide </h3>";
-
-                        } 
-                       
-                        else{
-                        echo " non vide";
-                        }
-                      
-
+                $ids = array_keys(($_SESSION['panier']));
+                $mes_res = $result; 
+                    if(empty($ids)){                 
                     }
-            else {
-                //   $_SESSION["garder"] = array();
-               
-                    $products = mysqli_query($con, "SELECT * FROM products WHERE id IN (".implode(',', $ids).")");
-                    foreach($products as $product):
-                    $total = $total + $product['price'] * $_SESSION['panier'][$product['id']] ;
-            ?>
+                    else {               
+                        $products = mysqli_query($con, "SELECT * FROM products WHERE id IN (".implode(',', $ids).")");
+                        foreach($products as $product):
+                        $total = $total + $product['price'] * $_SESSION['panier'][$product['id']] ;
+                    ?>
             <tr>
                 <td><img src="<?=$product['img']?>"></td>
                 <td><?=$product['name']?></td>
                 <td><?=$product['price']?>€</td>
-                <td><?=$_SESSION['panier'][$product['id']] // Quantité?></td>
+                <td><?=$_SESSION['panier'][$product['id']]?></td>
                 <td><a href="panier.php?del=<?=$product['id']?>"><img src="all_images/delete.png"></a></td>
             </tr>
-              <?php
-              ajouter_panier($product['id'], $_SESSION['id_users']);
-              ?>
+            <?php ajouter_panier($product['id'], $_SESSION['id_users']);
+            ?>
             <?php endforeach ;} ?>
-            </tr>
+            <tr class="total">
+                <th>Total : <?=$total?>€</th>
+            </tr>        
         </table>
     </section>
 </body>
