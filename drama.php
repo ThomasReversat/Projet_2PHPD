@@ -1,6 +1,6 @@
 <?php
     include 'includes/header.php';
-    include 'con_dbb.php';
+   // include 'con_dbb.php';
     session_start() ;
 ?>
 <!-- Import de style -->
@@ -24,20 +24,20 @@
     <!-- Importation BDD -->
     <?php
         $bdd = new PDO("mysql:host=localhost;dbname=projet_php;charset=utf8","root","");
-        $gen = $con->prepare("SELECT * FROM products WHERE genre='action'");
+        $gen = $bdd->prepare("SELECT * FROM products WHERE genre='drama'");
         $gen ->execute();
-        $req = $bdd->query("SELECT * FROM products");
-        while ($donnees = $req->fetch()) {
+       // $req = $bdd->query("SELECT * FROM products");
+        while ($donne= $gen->fetch()) {
     ?>
     <!-- Films -->
     <div class="container text-center">
         <div class="ligne">
             <div class="col">
                 <!-- Image -->
-                <img class="box" src= "<?=$donnees['img']?>"/><br/>         
-                <h2><?=$donnees['name']?></h2>
-                <p><?=$donnees['descriptions']?></p>
-                <iframe class="box-iframe"src="<?=$donnees['trailer']?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <img class="box" src= "<?=$donne['img']?>"/><br/>         
+                <h2><?=$donne['name']?></h2>
+                <p><?=$donne['descriptions']?></p>
+                <iframe class="box-iframe"src="<?=$donne['trailer']?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
         </div>
     </div>

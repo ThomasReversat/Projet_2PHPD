@@ -1,7 +1,12 @@
 <?php 
     include_once "con_dbb.php";
+    include("function.php");
     include 'includes/header.php';
     session_start();
+    if(!$_SESSION["connecter"])
+    {
+    header("Location:connexion.php");
+    }
     //supprimer les produits
     //si la variable del existe
     if(isset($_GET['del'])){
@@ -9,12 +14,28 @@
         //suppression
         unset($_SESSION['panier'][$id_del]);
     }
+    $bd = new PDO("mysql:host=localhost;dbname=projet_php;charset=utf8","root","");
+    if($bd)
+    {
+    $result = $bd->prepare("SELECT *from products join panier on products.id=panier.id and panier.id_users=:id_users");
+    $result->execute(
+        array(
+            'id_users' => $_SESSION['id_users']
+        )
+    );
+    }
 ?>
 
 <style><?php include 'css/style.css'; ?></style>
 
 <body class="panier">
     <a href="shop.php" class="link">Boutique</a>
+    <?php if(isset($_SESSION["cart"])) 
+      $id=json_encode($_SESSION["cart"])?>
+      <?php if(isset($id)):?>
+    <a href="sauvegarde.php?id=<?=urlencode($id)?>" class="link">Sauvegarder le panier</a>
+    <?php endif;?>
+
     <section>
         <table>
             <tr>
@@ -24,14 +45,32 @@
                 <th>Quantité</th>
                 <th>Action</th>
             </tr>
-            <?php 
+            <?php
+                echo $_SESSION["username"];
                 $total = 0 ;
-                $ids = array_keys($_SESSION['panier']);
-                if(empty($ids)){
-                    echo "Votre panier est vide";
-                }else {
+                if(isset($_SESSION["panier"]) && isset($result))
+                   $ids = array_keys(($_SESSION['panier']));
+                   $mes_res = $result; 
+
+
+                    if(empty($ids)){
+                        if (empty($mes_res)) {
+                            $cache = "cache";
+                            echo "<h3 class='<?=$cache?>'>Votre panier est vide </h3>";
+
+                        } 
+                       
+                        else{
+                        echo " non vide";
+                        }
+                      
+
+                    }
+            else {
+                //   $_SESSION["garder"] = array();
+               
                     $products = mysqli_query($con, "SELECT * FROM products WHERE id IN (".implode(',', $ids).")");
-                foreach($products as $product):
+                    foreach($products as $product):
                     $total = $total + $product['price'] * $_SESSION['panier'][$product['id']] ;
             ?>
             <tr>
@@ -41,6 +80,9 @@
                 <td><?=$_SESSION['panier'][$product['id']] // Quantité?></td>
                 <td><a href="panier.php?del=<?=$product['id']?>"><img src="all_images/delete.png"></a></td>
             </tr>
+              <?php
+              ajouter_panier($product['id'], $_SESSION['id_users']);
+              ?>
             <?php endforeach ;} ?>
             </tr>
         </table>

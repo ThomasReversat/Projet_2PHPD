@@ -2,11 +2,7 @@
     include_once "con_dbb.php";
     include 'includes/header.php';
     session_start() ;
-    if(!$_SESSION["username"]){
-        if(!$_SESSION["passwords"]){
-            header("Location: connexion.php");
-        }
-    }
+    
 ?>
 
 <style><?php include 'css/style.css'; ?></style>

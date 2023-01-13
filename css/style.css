@@ -10,14 +10,14 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background-color: #04202e;
+    background-color: #d5bdaf;
 }
 .link {
     margin: 20px;
     width: fit-content;
     position: relative;
     text-decoration: 0;
-    background-color: #37a6ff;
+    background-color: #d5bdaf;
     color: #fff;
     padding: 10px 25px;
     border-radius: 6px;
@@ -83,7 +83,7 @@ span {
 .id_product {
     text-align: center;
     text-decoration: 0;
-    background-color: #37a6ff;
+    background-color: #d5bdaf;
     letter-spacing: 1px;
     color: #fff;
     padding: 10px  10%;
@@ -120,7 +120,7 @@ th {
 td {
     border-top: 0.5px solid #999;
     text-align: center;
-    color: #37a6ff;
+    color: #d5bdaf;
 }
 tr {
     border-bottom: 0.5px solid #999;
@@ -130,6 +130,6 @@ tr {
     border: 0;
     float: left;
     font-weight: 500;
-    color: #37a6ff;
+    color: #d5bdaf;
     padding: 10px;
 }

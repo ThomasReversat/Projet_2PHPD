@@ -13,6 +13,7 @@
                 $_SESSION["username"] = $username;
                 $_SESSION["passwords"] = $passwords;
                 $_SESSION["id_users"] = $find->fetch()["id_users"];
+                $_SESSION["connecter"] = true;
                 header("Location:accueil.php") ;
             }else{
                 echo "<p>Votre mot de passe ou username n'est pas bon.</p>";
