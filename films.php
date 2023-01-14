@@ -1,6 +1,5 @@
 <?php
     include 'includes/header.php';
-    include 'con_dbb.php';
     session_start() ;
 ?>
 <style>
@@ -12,13 +11,13 @@
     <div class="cont">
         <div class="container text-center">
             <div class="link center">
-                <a href="accueil.php" class="link">Accueil</a>
+                <a href="index.php" class="link">Accueil</a>
                 <a href="shop.php" class="link">Boutique</a>
                 <a href="action.php" class="link">Action</a>
                 <a href="drama.php" class="link">Drama</a>
             </div>
             <?php
-                $bdd = new PDO("mysql:host=localhost;dbname=projet_php;charset=utf8","root","");
+                $bdd = new PDO("mysql:host=localhost;dbname=projet_php;charset=utf8","root","Victory@ng123");
                 $gen = $bdd->prepare("SELECT * FROM products join rea on products.id_rea=rea.id_rea
                 join actors on products.id_actors=actors.id_actors");
                 $gen ->execute();
@@ -31,6 +30,7 @@
                         <div class="text">
                             <h2><?= $donnees['name'] ?> avec <?= $donnees['name_actors'] ?> realiser par <?= $donnees['nom'].' '.$donnees['prenom']?></h2>
                             <p><?=$donnees['descriptions']?></p>
+                            <p><?=$donnees['price']?> €</p>
                         </div>
                         <iframe class="box-iframe"src="<?=$donnees['trailer']?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                     </div>

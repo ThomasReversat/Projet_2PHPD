@@ -1,20 +1,17 @@
 <?php 
     include_once "con_dbb.php";
-    include("function.php");
     include 'includes/header.php';
     session_start();
     if(!$_SESSION["connecter"])
     {
     header("Location:connexion.php");
     }
-    //supprimer les produits
-    //si la variable del existe
+
     if(isset($_GET['del'])){
         $id_del = $_GET['del'] ;
-        //suppression
         unset($_SESSION['panier'][$id_del]);
     }
-    $bd = new PDO("mysql:host=localhost;dbname=projet_php;charset=utf8","root","");
+    $bd = new PDO("mysql:host=localhost;dbname=projet_php;charset=utf8","root","Victory@ng123");
     if($bd)
     {
     $result = $bd->prepare("SELECT *from products join panier on products.id=panier.id and panier.id_users=:id_users");
@@ -31,7 +28,7 @@
 </style>
 <body class="panier">
     <div class="box">
-        <a href="accueil.php" class="linke">Accueil</a>
+        <a href="index.php" class="linke">Accueil</a>
         <a href="shop.php" class="linke">Boutique</a>
     </div>
     <?php if(isset($_SESSION["cart"])) 
@@ -68,8 +65,6 @@
                 <td><?=$_SESSION['panier'][$product['id']]?></td>
                 <td><a href="panier.php?del=<?=$product['id']?>"><img src="all_images/delete.png"></a></td>
             </tr>
-            <?php ajouter_panier($product['id'], $_SESSION['id_users']);
-            ?>
             <?php endforeach ;} ?>
             <tr class="total">
                 <th>Total : <?=$total?>€</th>

@@ -1,7 +1,7 @@
 <?php
     include 'includes/header.php';
     session_start();
-    $bdd = new PDO("mysql:host=localhost;dbname=projet_php;charset=utf8","root","");
+    $bdd = new PDO("mysql:host=localhost;dbname=projet_php;charset=utf8","root","Victory@ng123");
     if(isset($_POST["send"])){ 
         if(isset($_POST['username']) AND !empty($_POST["passwords"])){
             $username = htmlspecialchars($_POST["username"]);
@@ -13,7 +13,7 @@
                 $_SESSION["passwords"] = $passwords;
                 $_SESSION["id_users"] = $find->fetch()["id_users"];
                 $_SESSION["connecter"] = true;
-                header("Location:accueil.php") ;
+                header("Location:index.php") ;
             }else{
                 echo "<p class='text'>Votre mot de passe ou username n'est pas bon.</p>";
             }
@@ -38,7 +38,7 @@
            <p>Première visite sur notre site ?</p>
            <?php
                 echo '<a class="link" href="http://localhost/Projet_2PHPD/inscription.php">Incription</a>';
-                echo '<a class="link" href="http://localhost/Projet_2PHPD/accueil.php">Retour</a>';
+                echo '<a class="link" href="http://localhost/Projet_2PHPD/index.php">Retour</a>';
             ?>
        </form>
    </section> 

@@ -17,6 +17,6 @@ if(isset($_SESSION['panier'][$id])){
 }else {
     $_SESSION['panier'][$id]= 1 ;
 }
-header("Location:accueil.php");
+header("Location:index.php");
 }
 ?>

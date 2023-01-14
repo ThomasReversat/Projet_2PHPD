@@ -11,13 +11,13 @@
     <div class="cont">
         <div class="container text-center">
             <div class="link center">
-                <a href="accueil.php" class="link">Accueil</a>
+                <a href="index.php" class="link">Accueil</a>
                 <a href="shop.php" class="link">Boutique</a>
                 <a href="action.php" class="link">Action</a>
                 <a href="drama.php" class="link">Drama</a>
             </div>
             <?php
-                $bdd = new PDO("mysql:host=localhost;dbname=projet_php;charset=utf8","root","");
+                $bdd = new PDO("mysql:host=localhost;dbname=projet_php;charset=utf8","root","Victory@ng123");
                 $gen = $bdd->prepare("SELECT * FROM products WHERE genre='action'");
                 $gen ->execute();
                 while ($donne= $gen->fetch()) {

@@ -1,7 +1,7 @@
 <?php
     include 'includes/header.php';
     session_start();
-    $bdd = new PDO("mysql:host=localhost;dbname=projet_php;charset=utf8","root","");
+    $bdd = new PDO("mysql:host=localhost;dbname=projet_php;charset=utf8","root","Victory@ng123");
     if (isset($_POST["send"])) {
         if (!empty($_POST["username"]) and !empty($_POST["passwords"])) {
             $name = htmlspecialchars($_POST["name"]);

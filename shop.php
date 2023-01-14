@@ -2,7 +2,6 @@
     include_once "con_dbb.php";
     include 'includes/header.php';
     session_start() ;
-    
 ?>
 <style>
     <?php include 'css/style.css'; ?>
@@ -10,12 +9,12 @@
 </style>
 <body>
     <div class="head">
-        <a href="accueil.php" class="bouton">Accueil</a>
+        <a href="index.php" class="bouton">Accueil</a>
         <a href="panier.php" class="bouton">Panier</a>
     </div>
     <section class="products_list">
     <?php 
-        $bdd = new PDO("mysql:host=localhost;dbname=projet_php;charset=utf8","root","");
+        $bdd = new PDO("mysql:host=localhost;dbname=projet_php;charset=utf8","root","Victory@ng123");
         $req = $bdd->query("SELECT * FROM products");
         while ($donnees = $req->fetch()) {
     ?>
